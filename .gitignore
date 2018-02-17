@@ -1,6 +1,6 @@
-.DS_Store
 Node_Js/node_modules/**
 web-server-app/node_modules/**
+server.log
 
 # npm
 node_modules
