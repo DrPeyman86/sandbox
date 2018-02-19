@@ -4,6 +4,9 @@ const hbs = require('hbs');
 var app = express();
 var http = require('http').Server(app)
 
+const port = process.env.PORT || 3000;//process.env is a key value pair object that will store all app
+//enviroment variables. set 3000 to default in case we run the app locally 
+console.log(port);
 hbs.registerPartials(__dirname + '/views/partials')//partials allow parts of the pages that are rendered to be 
 //repeated. Like the header and footer could be partials so you don't have to modify them for each template you have.
 
@@ -71,7 +74,7 @@ app.get('/about', (req,res) => {
     })//the default folder for Node js templates is "views" so you can just put the file name to render.
 })
 
-var server = http.listen(3000, _callbackFunction());
+var server = http.listen(port, _callbackFunction());
 
 //when you instal socket.io, you can no longer use Express alone for backend, need to use Node HTTP server so that both express and socket.io will run
 function _callbackFunction() {
