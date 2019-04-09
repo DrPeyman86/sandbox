@@ -16,4 +16,20 @@ var user = {
     }
 }
 
+const event = {
+    name: "birthday part",
+    guestList: ['Peyman','John','Mehmet'],
+    // printGuestList: function() {
+    //     console.log('Guest list for ' + this.name)
+    // }
+    printGuestList () {
+        console.log('Guest list for ' + this.name)
+        //arrow functions do not bind to the this value, but instead bind to the value in the context they were created, which in this case is the printGuestList() method
+        this.guestList.forEach((guest)=>{
+            console.log(guest + ' is attending ' + this.name);
+        })
+    }
+}
+
 user.sayHi(1,2,3);
+event.printGuestList();
