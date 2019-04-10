@@ -12,7 +12,7 @@
 //     //console.log('addNote');
 //     return numberOne + numberTwo;
 // }
-
+const chalk = require('chalk');
 const fs = require('fs')
 
 var fetchNotes = function() {
@@ -64,8 +64,17 @@ var getAll = () => {
 var readNotes = (title) => {
     //console.log('Reading Note ', title)
     var notes = fetchNotes();
-    var filterReadNote = notes.filter((note) => note.title === title);
-    return filterReadNote[0];
+    //var filterReadNote = notes.filter((note) => note.title === title);
+    const note = notes.find((note)=> note.title === title)
+    if(note){
+        //console.log(note.body);
+        return chalk.inverse(note.title + ' ' + note.body)
+    } else {
+        //console.log(chalk.red.inverse("Note not found"))
+        return chalk.red.inverse("Note not found")
+    }
+
+    //return note[0];
 }
 
  var removeNotes = (title) => {
