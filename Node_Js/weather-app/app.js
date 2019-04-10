@@ -32,6 +32,8 @@ app.post('/address', async (req, res) => {
             if (errorMessage) {
                 //console.log(errorMessage);
                 var returnToClient = errorMessage
+                io.emit('address', returnToClient)
+                return;
             } else {
                 //console.log(JSON.stringify(results, undefined, 2));//the second parameter just put UNDEFINED just to skip over the filtering option which we don't need
                 //console.log(results);
