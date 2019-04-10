@@ -1,4 +1,5 @@
-var express = require('express')
+const path = require('path');
+var express = require('express')//expess is a functoin rather than other packages being objects
 var bodyParser = require('body-parser')//this brings in body-parser
 var app = express()//instatntiate the express app
 var http = require('http').Server(app)
@@ -11,11 +12,16 @@ const yargs = require('yargs');
 const geocode = require('./geocode/geocode');
 const weather = require('./weather/weather');
 
-app.use(express.static(__dirname));
+//you can place public files that will be used in the express.static() directoy. so in this case the
+//public files are on the same root directoy. but you could have used console.log(path.join(__dirname, '../public'));
+//to add a public folder which would have stored the views of the app.
+app.use(express.static(__dirname));//set up the static directory of the main page the app will load when you go to localhost:3000 or whatver port
 app.use(bodyParser.json());// this tells the app that we expect json to be coming in when .post() is called
 app.use(bodyParser.urlencoded({extended:false}));
 
-//console.log(app)
+//console.log(__dirname);
+//path will get the current directory url then you can either go down or up to folders by join()
+//console.log(path.join(__dirname, '../public'));
 
 /*needed for the .html call*/
 app.get('/address', (req, res) => {
