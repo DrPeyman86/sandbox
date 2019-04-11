@@ -15,13 +15,14 @@ const weather = require('./weather/weather');
 //you can place public files that will be used in the express.static() directoy. so in this case the
 //public files are on the same root directoy. but you could have used console.log(path.join(__dirname, '../public'));
 //to add a public folder which would have stored the views of the app.
-app.use(express.static(__dirname));//set up the static directory of the main page the app will load when you go to localhost:3000 or whatver port
+app.use(express.static(path.join(__dirname, '/public')));//set up the static directory of the main page the app will load when you go to localhost:3000 or whatver port
 app.use(bodyParser.json());// this tells the app that we expect json to be coming in when .post() is called
 app.use(bodyParser.urlencoded({extended:false}));
+app.set('view engine', 'hbs')//tell express to use the handlebars package for the view engine of your web pages. handlebars is not required to require up top. 
 
 //console.log(__dirname);
 //path will get the current directory url then you can either go down or up to folders by join()
-//console.log(path.join(__dirname, '../public'));
+//console.log(path.join(__dirname, '/public'));
 
 /*needed for the .html call*/
 app.get('/address', (req, res) => {
